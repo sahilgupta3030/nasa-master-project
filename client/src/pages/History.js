@@ -7,9 +7,12 @@ const History = props => {
       .map((launch) => {
         return <tr key={String(launch.flightNumber)}>
           <td>
-            <span style={
-              { color: launch.success ? "greenyellow" : "red" }
-            }>█</span>
+            <span style={{
+              display: 'inline-block',
+              width: '10px',
+              height: '10px',
+              backgroundColor: launch.success ? 'greenyellow' : 'red'
+            }}></span>
           </td>
           <td>{launch.flightNumber}</td>
           <td>{new Date(launch.launchDate).toDateString()}</td>

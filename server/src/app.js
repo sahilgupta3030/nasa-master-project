@@ -4,6 +4,7 @@ const path = require('path');
 const morgan = require('morgan');
 
 const planetsRouter = require('./routes/planets/planets.router');
+const launchesRouter = require('./routes/launches/launches.router');
 
 const app = express();
 
@@ -19,11 +20,12 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 // Log the public path when the server starts
 console.log('Static files are served from:', path.join(__dirname, '..', 'public'));
 
-app.get('/', (req, res) => {
+app.use('/planets', planetsRouter);
+app.use('/launches', launchesRouter);
+
+app.get('*', (req, res) => {
     // res.send('Welcome to the server!');
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 });
-
-app.use('/planets', planetsRouter);
 
 module.exports = app;
